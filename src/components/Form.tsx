@@ -58,6 +58,7 @@ const Form = () => {
           <button type="submit" className="bg-[#F85441] hover:bg-[#F96539] text-[#FAF8E6] font-bolf py-2 px-4 rounded-md">Réserver</button>
         </div>
       </form>
+      <ToastContainer/>
     </div>
   )
 }
