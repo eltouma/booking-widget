@@ -1,0 +1,142 @@
+{
+  "name": "Blooming",
+  "address": "4 rue Saint Sauveur, 75002 Paris",
+  "phone_number": "06 59 69 86 29",
+  "hourly_start": "10:00",
+  "hourly_end": "21:00",
+  "closing_day": "Monday",
+  "slots_available": [
+    {
+      "id": 1,
+      "date": "2025-10-06T10:00:00Z",
+      "capacity": 6,
+      "remaining": 6
+    },
+    {
+      "id": 2,
+      "date": "2025-10-06T13:00:00Z",
+      "capacity": 6,
+      "remaining": 4
+    },
+    {
+      "id": 3,
+      "date": "2025-10-06T16:00:00Z",
+      "capacity": 6,
+      "remaining": 1
+    },
+    {
+      "id": 4,
+      "date": "2025-10-06T19:00:00Z",
+      "capacity": 6,
+      "remaining": 0
+    },
+    {
+      "id": 5,
+      "date": "2025-10-09T13:00:00Z",
+      "capacity": 6,
+      "remaining": 1
+    },
+    {
+      "id": 6,
+      "date": "2025-10-09T16:00:00Z",
+      "capacity": 6,
+      "remaining": 2
+    },
+    {
+      "id": 7,
+      "date": "2025-10-09T19:00:00Z",
+      "capacity": 6,
+      "remaining": 0
+    },
+    {
+      "id": 8,
+      "date": "2025-10-10T10:00:00Z",
+      "capacity": 6,
+      "remaining": 0
+    },
+    {
+      "id": 9,
+      "date": "2025-10-10T13:00:00Z",
+      "capacity": 6,
+      "remaining": 5
+    },
+    {
+      "id": 10,
+      "date": "2025-10-10T16:00:00Z",
+      "capacity": 6,
+      "remaining": 3
+    },
+    {
+      "id": 11,
+      "date": "2025-10-10T19:00:00Z",
+      "capacity": 6,
+      "remaining": 0
+    },
+    {
+      "id": 12,
+      "date": "2025-10-14T10:00:00Z",
+      "capacity": 6,
+      "remaining": 6
+    },
+    {
+      "id": 13,
+      "date": "2025-10-14T13:00:00Z",
+      "capacity": 6,
+      "remaining": 4
+    },
+    {
+      "id": 14,
+      "date": "2025-10-14T16:00:00Z",
+      "capacity": 6,
+      "remaining": 1
+    },
+    {
+      "id": 15,
+      "date": "2025-10-14T19:00:00Z",
+      "capacity": 6,
+      "remaining": 0
+    },
+    {
+      "id": 16,
+      "date": "2025-10-16T13:00:00Z",
+      "capacity": 6,
+      "remaining": 1
+    },
+    {
+      "id": 17,
+      "date": "2025-10-16T16:00:00Z",
+      "capacity": 6,
+      "remaining": 2
+    },
+    {
+      "id": 18,
+      "date": "2025-10-16T19:00:00Z",
+      "capacity": 6,
+      "remaining": 0
+    },
+    {
+      "id": 19,
+      "date": "2025-10-18T10:00:00Z",
+      "capacity": 6,
+      "remaining": 0
+    },
+    {
+      "id": 20,
+      "date": "2025-10-18T13:00:00Z",
+      "capacity": 6,
+      "remaining": 5
+    },
+    {
+      "id": 21,
+      "date": "2025-10-18T16:00:00Z",
+      "capacity": 6,
+      "remaining": 3
+    },
+    {
+      "id": 22,
+      "date": "2025-10-18T19:00:00Z",
+      "capacity": 6,
+      "remaining": 0
+    }
+  ]
+}
