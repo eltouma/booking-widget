@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build:widget": "npx rollup -c rollup2.config.mjs"
+    "build:widget": "npx rollup -c rollup.config.mjs"
   },
   "dependencies": {
     "@babel/preset-react": "^7.27.1",
