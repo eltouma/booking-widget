@@ -1,0 +1,28 @@
+@reference "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.widget-container {
+  @apply fixed bottom-4 right-5 w-[300px] h-[800px] bg-white border border-gray-200 rounded-lg shadow-lg z-[9999];
+}
+
+.widget-button {
+  @apply fixed bottom-5 right-5 px-6 py-3 bg-indigo-600 text-[#214E34] border-none rounded-lg cursor-pointer z-[9999];
+}
+
+.widget-header {
+  @apply p-3 border-b border-gray-200 flex justify-between items-center;
+}
+
+.widget-content {
+  @apply p-4;
+}
+
+.widget-container {
+  width: 300px;
+  height: 400px;
+  border: 1px solid #ccc;
+  background-color: white;
+  padding: 10px;
+}
