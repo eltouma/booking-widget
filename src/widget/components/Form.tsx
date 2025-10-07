@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
-import { CiCalendar } from 'react-icons/ci';
 import 'react-toastify/dist/ReactToastify.css';
 import { getSlots, bookSlot, failBooking } from '../services/mockServer.ts';
 import Calendar from './Calendar.tsx';
-//import Loader from './Loader.tsx';
+import Loader from './Loader.tsx';
 
 
 interface formData {
@@ -15,9 +14,8 @@ interface formData {
   phoneNumber: string;
 };
 
-
 const Form = () => {
-  const { register, handleSubmit, reset, formState: {errors} } = useForm<FormData>();
+  const { register, handleSubmit, reset, formState: {errors} } = useForm<formData>();
   const [ selectedDate, setSelectedDate ] = useState<Date | null>(new Date());
   const [ loading, setLoading ] = useState(false);
 
@@ -42,7 +40,13 @@ const Form = () => {
         setLoading(false);
         return toast.error('Échec de paiement. Veuillez réessayer plus tard.');
       }
-      toast.success('Votre réservation est confirmée.');
+
+      const slotBooked = await bookSlot(chosenSlot.id);
+      if (!slotBooked)
+        toast.error('Une erreur est survenue. Veuillez réessayer plus tard.');
+      else
+        toast.success('Votre réservation est confirmée.');
+      reset();
     } catch {
       console.error('An error occured', errors);
       toast.error('Créneau complet. Merci d\'en choisir un autre.');
@@ -103,53 +107,17 @@ const Form = () => {
               <span className="w-3 h-3 bg-[#bde0fe] rounded-sm"></span>
               <p className="m-0 text-black">Vacances / fériés</p>
             </div>
+          </div>
         </div>
-    </div>
 
-
-
+        <div className="flex items-center ml-12 mt-8 space-x-4">
+          <button type="submit" className="bg-[#6c757d] hover:bg-[#bdc6d1] text-[#FAF8E6] font-bolf py-2 px-4 rounded-mdi cursor-pointer">Réserver</button>
+        { loading && <Loader loading={true} /> }
+        </div>
       </form>
+      <ToastContainer />
     </div>
   )
 }
 
 export default Form;
-
-{/*
-return (
-        <div className="inline flex flex-wrap items-center gap-3 mt-4 text-sm">
-          <p className="text-sm mt-4">
-            <span className="text-[#FB5151] font-bold">Rappel</span> : les ateliers ont lieu de 18h à 20h. Les réservations <b>ne sont plus possible après 17h30</b> le jour même.</p>
-        </div>
-        <div className="mt-4">
-        </div>
-        <div className="inline flex flex-wrap items-center gap-3 mt-4 text-sm">
-          <div className="flex items-center gap-2">
-            <span className="w-4 h-4 bg-[#74c69d] rounded-sm"></span>
-            <span>Disponible</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="w-4 h-4 bg-[#ffbd71] rounded-sm"></span>
-            <span>Places limitées</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="w-4 h-4 bg-[#FB5151] rounded-sm"></span>
-            <span>Complet</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="w-4 h-4 bg-[#bde0fe] rounded-sm"></span>
-            <span>Vacances, jours fériés</span>
-          </div>
-        </div>
-        <div className="inline flex flex-wrap items-center mt-4 space-x-2">
-          <button type="submit" className="bg-[#F85441] hover:bg-[#F96539] text-[#FAF8E6] font-bolf py-2 px-4 rounded-md">Réserver</button>
-{/*          {loading && <Loader size={25} color="#ffffff" />}
-        </div>
-      </form>
-      <ToastContainer/>
-    </div>
-  )
-}
-
-export default Form
-*/}
