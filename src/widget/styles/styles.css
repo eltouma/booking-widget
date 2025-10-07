@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 .widget-container {
-  @apply fixed bottom-4 right-5 w-[300px] h-[800px] bg-white border border-gray-200 rounded-lg shadow-lg z-[9999];
+  @apply fixed bottom-4 right-5 w-[410px] h-[820px] bg-white border border-gray-200 rounded-lg shadow-lg z-[9999];
 }
 
 .widget-button {
@@ -12,9 +12,47 @@
 }
 
 .widget-header {
-  @apply p-3 border-b border-gray-200 flex justify-between items-center;
+  @apply border-b border-gray-200 flex justify-between items-center;
 }
 
 .widget-content {
-  @apply p-4;
+  @apply p-2;
 }
+
+.custom-form-label {
+  @apply ml-2 flex justify-start block text-[#778DA9];
+}
+
+.custom-form-input {
+  @apply bg-[#FCFCFC] text-[#000000] border-0 border-b border-b-gray-300 w-sm ml-2;
+}
+
+.custom-form-errors {
+  @apply flex justify-start block border-0 text-[#E5383B] text-sm;
+}
+
+.react-datepicker__day.day-full {
+  background-color: #FB5151 !important;
+  color: white !important;
+}     
+
+.react-datepicker__day.day-limited {
+  background-color: #FFBD71 !important;
+  color: white !important;
+}
+   
+.react-datepicker__day.day-available {
+  background-color: #74c69d !important;
+  color: white !important;
+}  
+    
+.react-datepicker__day.day-holiday {
+  background-color: #bde0fe !important;
+  color: #6b7280 !important;
+  cursor: not-allowed;
+}   
+    
+.react-datepicker__day--selected {
+  background-color: transparent !important;
+  border: 1px solid black !important;
+}  

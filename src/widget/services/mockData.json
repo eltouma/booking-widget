@@ -1,0 +1,58 @@
+{
+  "name": "Blooming",
+  "address": "4 rue du test, 75018 Paris",
+  "phone_number": "06 02 24 19 91",
+  "hourly_start": "10:00",
+  "hourly_end": "21:00",
+  "closing_day": "Monday",
+  "slots_available": [
+    {
+      "id": 0,
+      "date": "2025-10-07T18:00:00Z",
+      "capacity": 6,
+      "remaining": 6
+    },
+    {
+      "id": 1,
+      "date": "2025-10-09T18:00:00Z",
+      "capacity": 6,
+      "remaining": 1
+    },
+    {
+      "id": 2,
+      "date": "2025-10-10T18:00:00Z",
+      "capacity": 6,
+      "remaining": 4
+    },
+    {
+      "id": 3,
+      "date": "2025-10-11T18:00:00Z",
+      "capacity": 6,
+      "remaining": 0
+    },
+    {
+      "id": 4,
+      "date": "2025-10-14T18:00:00Z",
+      "capacity": 6,
+      "remaining": 3
+    },
+    {
+      "id": 5,
+      "date": "2025-10-16T18:00:00Z",
+      "capacity": 6,
+      "remaining": 0
+    },
+    {
+      "id": 6,
+      "date": "2025-10-17T18:00:00Z",
+      "capacity": 6,
+      "remaining": 6
+    },
+    {
+      "id": 7,
+      "date": "2025-10-18T18:00:00Z",
+      "capacity": 6,
+      "remaining": 4
+    }
+  ]
+}
