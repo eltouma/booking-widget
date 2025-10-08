@@ -7,6 +7,7 @@ import typescript from '@rollup/plugin-typescript';
 import { parseArgs } from 'node:util';
 import postcss from 'rollup-plugin-postcss';
 import tsConfigPaths from 'rollup-plugin-tsconfig-paths';
+import json from "@rollup/plugin-json";
 
 const args = parseArgs({
   options: {
@@ -82,6 +83,7 @@ export default {
       toString: true,
     }),
     commonjs(),
+    json(),
     terser({
       ecma: 2020,
       mangle: { toplevel: true },

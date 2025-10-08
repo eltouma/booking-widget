@@ -12,7 +12,7 @@ export function Widget() {
         className="widget-button"
         onClick={() => setIsOpen(true)}
       >
-        Réserver
+        Réserver un atelier
       </button>
     );
   }
