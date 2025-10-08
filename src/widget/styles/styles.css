@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 .widget-container {
-  @apply bottom-4 right-5 w-[410px] h-[820px] bg-white border border-gray-200 rounded-lg shadow-lg z-[9999];
+  @apply bottom-4 right-5 w-[500px] h-[900px] bg-white border border-gray-200 rounded-lg shadow-lg z-[9999];
   position: relative;
 }
 
@@ -17,7 +17,7 @@
   font-size: 1rem;
   letter-spacing: 1px;
   text-transform: uppercase;
-  font-family: 'Big Shoulders Text', sans-serif; /* 👈 ajouté */
+  font-family: 'Big Shoulders Text', sans-serif;
   text-decoration: none;
   transition: background 0.3s ease;
 }
