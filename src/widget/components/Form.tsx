@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast, Toaster } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 import { getSlots, bookSlot, failBooking } from '../services/mockServer.ts';
 import Calendar from './Calendar.tsx';
@@ -38,7 +38,7 @@ const Form = () => {
         setLoading(true);
         await failBooking(chosenSlot.id);
         setLoading(false);
-        return toast.error('Échec de paiement. Veuillez réessayer plus tard.');
+         return toast.error('Échec de paiement. Veuillez réessayer plus tard.');
       }
 
       const slotBooked = await bookSlot(chosenSlot.id);
@@ -111,11 +111,22 @@ const Form = () => {
         </div>
 
         <div className="flex items-center ml-12 mt-8 space-x-4">
-          <button type="submit" className="bg-[#6c757d] hover:bg-[#bdc6d1] text-[#FAF8E6] font-bolf py-2 px-4 rounded-mdi cursor-pointer">Réserver</button>
+          <button type="submit" className="bg-[#6c757d] hover:bg-[#bdc6d1] text-[#FAF8E6] font-bolf py-2 px-4 rounded-sm cursor-pointer">Réserver</button>
         { loading && <Loader loading={true} /> }
         </div>
       </form>
-      <ToastContainer />
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          style: {
+            marginTop: '80px',
+            fontSize: '16px',
+            color: '#fff',
+          },
+          success: { style: { background: '#74c69d' } },
+          error: { style: { background: '#f56565' } },
+        }}
+      />
     </div>
   )
 }

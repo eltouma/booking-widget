@@ -17,6 +17,7 @@
     "react-datepicker": "^8.7.0",
     "react-dom": "^19.2.0",
     "react-hook-form": "^7.64.0",
+    "react-hot-toast": "^2.6.0",
     "react-icons": "^5.5.0",
     "react-spinners": "^0.17.0",
     "react-toastify": "^11.0.5"
@@ -25,6 +26,7 @@
     "@eslint/js": "^9.36.0",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-replace": "^6.0.2",
     "@rollup/plugin-terser": "^0.4.4",

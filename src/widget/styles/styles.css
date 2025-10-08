@@ -4,11 +4,26 @@
 @tailwind utilities;
 
 .widget-container {
-  @apply fixed bottom-4 right-5 w-[410px] h-[820px] bg-white border border-gray-200 rounded-lg shadow-lg z-[9999];
+  @apply bottom-4 right-5 w-[500px] h-[900px] bg-white border border-gray-200 rounded-lg shadow-lg z-[9999];
+  position: relative;
 }
 
 .widget-button {
-  @apply fixed bottom-5 right-5 px-6 py-3 bg-indigo-600 text-white border-none rounded-lg cursor-pointer z-[9999];
+  @apply fixed bottom-5 right-5 text-white border-none rounded-full cursor-pointer z-[9999] uppercase tracking-wider transition-colors;
+  background-color: #a5b68d;
+  color: white;
+  padding: 0.8rem 1.6rem;
+  border-radius: 40px;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: 'Big Shoulders Text', sans-serif;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.widget-button:hover {
+  background-color: #8ba574; /* effet hover identique */
 }
 
 .widget-header {

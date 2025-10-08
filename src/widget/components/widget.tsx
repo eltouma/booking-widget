@@ -12,7 +12,7 @@ export function Widget() {
         className="widget-button"
         onClick={() => setIsOpen(true)}
       >
-        Réserver
+        Réserver un atelier
       </button>
     );
   }
@@ -26,8 +26,8 @@ export function Widget() {
           </div>
           <h1 className="text-2xl font-bold uppercase text-[#6C757D]">Réservation</h1>
         </div>
-        <button onClick={() => setIsOpen(false)} className="cursor-pointer">
-          X
+        <button onClick={() => setIsOpen(false)} className="cursor-pointer flex items-center justify-center w-8 h-8 rounded-full hover:bg-gray-100 transition-colors text-gray-500 text-lg">
+          &times;
         </button>
       </div>
       <div className="widget-content">
