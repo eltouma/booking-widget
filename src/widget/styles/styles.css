@@ -5,6 +5,10 @@
 
 .widget-container {
   @apply fixed bottom-5 right-5 w-[400px] h-[700px] bg-white border border-gray-200 rounded-lg shadow-lg z-[9999] flex flex-col overflow-hidden;
+
+  @apply md:w-[400px] md:h-[700px] sm:w-[90vw] sm:h-[80vh] sm:right-[5vw] sm:bottom-[5vh] max-sm:w-[95vw] max-sm:h-[85vh] max-sm:right-[2.5vw];
+
+ @apply max-[360px]:w-[95vw] max-[360px]:h-[85vh] max-[360px]:right-[2.5vw] max-[360px]:bottom-[2.5vh];
 }
 
 .widget-button {

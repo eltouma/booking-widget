@@ -118,10 +118,14 @@ const Form = () => {
       <Toaster
         position="top-center"
         toastOptions={{
+          duration: 2000,
           style: {
             marginTop: '80px',
             fontSize: '16px',
             color: '#fff',
+            padding: '12px 20px',
+            borderRadius: '8px',
+            minWidth: '250px',
           },
           success: { style: { background: '#74c69d' } },
           error: { style: { background: '#f56565' } },
