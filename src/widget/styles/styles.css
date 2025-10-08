@@ -4,8 +4,7 @@
 @tailwind utilities;
 
 .widget-container {
-  @apply bottom-4 right-5 w-[500px] h-[900px] bg-white border border-gray-200 rounded-lg shadow-lg z-[9999];
-  position: relative;
+  @apply fixed bottom-5 right-5 w-[400px] h-[700px] bg-white border border-gray-200 rounded-lg shadow-lg z-[9999] flex flex-col overflow-hidden;
 }
 
 .widget-button {
@@ -31,7 +30,8 @@
 }
 
 .widget-content {
-  @apply p-2;
+  @apply flex-1 p-2 overflow-y-auto;
+  max-height: calc(725px - 200px);
 }
 
 .custom-form-label {
