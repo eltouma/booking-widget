@@ -14,7 +14,7 @@ npm install -D tailwindcss postcss tslib rollup \
 npm run build
 ```
 \
-**Explications des dépendances** \
+**Explications des dépendances**
 - `plugin-babel` permet de transpiler le code avec Babel
 - `plugin-commonjs` permet d’importer les modules CJS
 - `plugin-node-resolve` permet de résoudre l’adresse du module depuis les node_modules (par exemple react, react-dom)
@@ -153,12 +153,25 @@ Sinon, elle décrémente le remaining et renvoie la mise à jour du slot.
 Sert à simuler un échec de paiement en mettant un setTimeout plus long. Dans `Form.tsx` lorsque cette fonction est appelée un loader est lancé indiquant à l'utilisateur que la transaction est en cours.
 
 
-
-
-
 ### Points d'amélioration ###
 - Simuler l'échec de paiement de manière aléatoire (avec un `Math.random()`) au lieu de faire une comparaison avec l'avant dernier slot disponible. Ça reflètrai mieux les conditions réelles.
 - Gérer les races conditions : si le remaining passe à 0 entre le retour de `BookSlot()` et le submit, afficher un message d'erreur au moment de la réservation.
 - Permettre à l'utilisateur de réserver un créneau pour plusieurs personnes
 - Permettre plusieurs créneaux dans la journée
 
+## 5 - Expérience utilisateur ##
+### Objectif ###
+Assurer une interface claire et intuitive en gérant correctement les états visuels : succès, temps d'attente, erreurs, créneaux complets
+### Le formulaire ###
+Chaque champ du formulaire a un label clair et un message d'erreur est envoyé en cas de données manquantes ou incorrectes (adresse mail ou numéro de téléphone invalide) permettant une correction immédiate avant la soumission du formulaire.
+### Légende ###
+Pour que l'expérience utilisateur soit la plus intuitive possible le calendrier est coloré en fonction de la disponibiilté des créneaux :
+- **vert** : créneau disponible
+- **orange** : nombre de places limité
+- **rouge** : créneau complet
+- **bleu** : indisponible (vacances et jours fériés)
+Ça permet à l'utilisateur de voir en coup d'oeil si un créneau est disponible ou non.
+### Notifications ###
+Lorsqu'une réservation est faite un toast s'affiche avec un message clair et concis pour indiquer à l'utilisateur si sa réservation a réussie ou échouée.
+### Échec de paiement ###
+L'échec de paiement est un cas à part puisque c'est le seul qui possède un loader en plus simulant une attente hors norme menant à l'échec.
