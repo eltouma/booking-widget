@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import { WidgetContainer } from './components/widget-container';
+import reactDatepickerCSS from './styles/react-datepicker.css';
 import widgetCSS from './styles/styles.css';
 
 function initializeWidget(options?: { target?: string; clientKey?: string }) {
@@ -16,7 +17,7 @@ function initializeWidget(options?: { target?: string; clientKey?: string }) {
   const shadow = container.attachShadow({ mode: 'open'});
 
   const styleTag = document.createElement('style');
-  styleTag.textContent = widgetCSS;
+  styleTag.textContent = `${reactDatepickerCSS}\n${widgetCSS}`;
   shadow.appendChild(styleTag);
 
   const shadowRoot = document.createElement('div');
