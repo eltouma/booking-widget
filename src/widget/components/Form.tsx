@@ -34,7 +34,7 @@ const Form = () => {
 
       if (!chosenSlot)
         return toast.error('Veuillez sélectionner un créneau.');
-      if (chosenSlot.id === 6) {
+      if (chosenSlot.id === slots.length - 1) {
         setLoading(true);
         await failBooking(chosenSlot.id);
         setLoading(false);

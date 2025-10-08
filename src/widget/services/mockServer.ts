@@ -10,6 +10,10 @@ export interface Slots {
 let slots: Slots[] = data.slots_available;
 
 async function getSlots(): Promise<Slots[]> {
+  const invalidSlot = data.slots_available.find(slot => slot.remaining > slot.capacity);
+  if (invalidSlot)
+    throw new Error('JSON error: remaining > capacity for slot ' + invalidSlot.id);
+
   const now = new Date();
 
   const avalaibleSlots = data.slots_available.filter(slot => {
