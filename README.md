@@ -141,19 +141,20 @@ Cette structure est simple et permet de connaitre rapidement la disponibilité d
 
 ### Simulation du backend ###
 Le fichier mockServer.ts simule les calls API grâce à 3 fonctions principales :
-- `getSlots()`
-- `bookSlot()`
-- `failBooking()`
-
-La fonction `getSlots()` vérifie qu'il n'y a pas d'erreur dans le JSON (remaining < capacity). \
+- `getSlots()` \
+Vérifie qu'il n'y a pas d'erreur dans le JSON (remaining < capacity). \
 Retourne la liste des slots disponibles à partir du JSON. \
 Filtre les dates et possède une variable `exceeding` qui empêche la réservation d'un slot 30min avant le début de l'atelier.
-
-La fonction `bookSlot()` vérifie si le slot passé en paramètre est disponible. \
+- `bookSlot()` \
+Vérifie si le slot passé en paramètre est disponible. \
 Si remaining <= 0 la réservation échoue. \
 Sinon, elle décrémente le remaining et renvoie la mise à jour du slot. 
+- `failBooking()` \
+Sert à simuler un échec de paiement en mettant un setTimeout plus long. Dans `Form.tsx` lorsque cette fonction est appelée un loader est lancé indiquant à l'utilisateur que la transaction est en cours.
 
-La fonction `failBooking()` sert à simuler un échec de paiement en mettant un setTimeout plus long. Dans `Form.tsx` lorsque cette fonction est appelée un loader est lancé indiquant à l'utilisateur que la transaction est en cours.
+
+
+
 
 ### Points d'amélioration ###
 - Simuler l'échec de paiement de manière aléatoire (avec un `Math.random()`) au lieu de faire une comparaison avec l'avant dernier slot disponible. Ça reflètrai mieux les conditions réelles.
