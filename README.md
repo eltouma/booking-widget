@@ -1,73 +1,31 @@
-# React + TypeScript + Vite
+## Communication avec le site hôte : ##
+### Objectif ###
+Gérer la communication entre le widget et le site hôte grâce à des **CustomEvent**.
+Le widget envoie des CustomEvent pour informer le site hôte des actions de l'utilisateur :
+- `booking:success` : la réservation est confirmée.
+- `booking:failed` : la réservation a échoué.
+Les événements contiennent les détails de l'action effectuée :
+- en cas de succès : l'id du crénau choisi, les informations sur le client et la date
+- en cas d'échec : un message d'erreur et la date du créneau concerné
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Pourquoi CustomEvent ###
+- C'est flexible et moderne
+- Ça permet de passer des données personnalisées (ici les données clients, la date, l'id du slot)
+- C'est plus adapté au code asynchrone que les callbacks
+- C'est plus adapté lorsque le code est isolé (comme c'est le cas du widget)
 
-Currently, two official plugins are available:
+### Problème rencontré ###
+Le site hôte ne reçoit pas les events émis par le widget.
+**Test effectué**
+Ajout des options `bubbles: true` et `composed: true` pour permettre à l'event de remonter le DOM et de traverser le shadow DOM
+`./src/widget/components/Form.tsx`
+`.tsx
+  bubbles: true,
+  composed: true
+`
+Ça n'a pas fonctionné.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Hypothèse**
+Le widget n'arrive pas à traverser le DOM shadow. Le host ne reçoit pas l'event. Il est possible que ça vienne du fait que les events sont dispatchés sur `window` au lieu de l'élément hôte. Le widget s'exécute sur un DOM parent isolé ce qui empêche la propagation.
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+[CustomEvent vs callback](https://gomakethings.com/callbacks-vs.-custom-events-in-vanilla-js/)

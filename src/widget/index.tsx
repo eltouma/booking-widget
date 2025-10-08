@@ -25,7 +25,9 @@ function initializeWidget(options?: { target?: string; clientKey?: string }) {
   shadow.appendChild(shadowRoot);
 
   const root = createRoot(shadowRoot);
-  root.render(<WidgetContainer clientKey={options?.clientKey || ''} />);
+  root.render(
+    <WidgetContainer clientKey={options?.clientKey || ''}
+  />);
 }
 
 (window as any).BookingWidget = { init: initializeWidget };

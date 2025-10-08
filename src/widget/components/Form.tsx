@@ -40,12 +40,33 @@ const Form = () => {
         setLoading(false);
          return toast.error('Échec de paiement. Veuillez réessayer plus tard.');
       }
-
+      
       const slotBooked = await bookSlot(chosenSlot.id);
-      if (!slotBooked)
+      if (!slotBooked) {
         toast.error('Une erreur est survenue. Veuillez réessayer plus tard.');
-      else
+        const event = new CustomEvent('booking:failed', {
+          detail: {
+            reason: 'server_error',
+            date: chosenSlot?.date,
+          },
+          bubbles: true,
+          composed: true
+        });
+        window.dispatchEvent(event);
+      } else {
         toast.success('Votre réservation est confirmée.');
+        const event = new CustomEvent('booking:success', {
+          detail: {
+            slotId: chosenSlot.id,
+            date: chosenSlot.date,
+            customer: _data,
+            timestamp: new Date().toISOString(),
+          },
+          bubbles: true,
+          composed: true
+        });
+        window.dispatchEvent(event);
+      }
       reset();
     } catch {
       console.error('An error occured', errors);
