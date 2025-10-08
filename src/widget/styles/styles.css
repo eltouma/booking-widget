@@ -13,7 +13,7 @@
 
 .widget-button {
   @apply fixed bottom-5 right-5 text-white border-none rounded-full cursor-pointer z-[9999] uppercase tracking-wider transition-colors;
-  background-color: #a5b68d;
+  background-color: #37402C;
   color: white;
   padding: 0.8rem 1.6rem;
   border-radius: 40px;
