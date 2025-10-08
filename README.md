@@ -3,7 +3,7 @@
 [Inspiration et wireframe](https://www.figma.com/design/qorm8UiXR1tVa1PR4iVGFH/Untitled?node-id=0-1&p=f&t=iimf6EqkAYKBkaag-0)
 
 ### Build le projet ###
-```
+```sh
 npm install react react-dom react-router-dom
 
 npm install -D tailwindcss postcss tslib rollup \
@@ -47,7 +47,7 @@ Enfin Tailwind s'intègre très facilement dans les composants React ce qui fais
 
 
 ### Build le widget ###
-```
+```sh
 npm i react-datepicker --save \
 npm i react-hook-form \
 npm i --save react-spinners/cjs \
@@ -81,8 +81,35 @@ Comme mon objectif était de permettre au site hôte de personnaliser visuelleme
 
 ## 2 - Gestion de la personnalisation ##
 ### Objectif ###
-Permettre au site hôte de personnaliser le widget.
-Je n'ai pas réussi : j'ai choisi le script explicitement pour ça et je n'ai pas réussi.
+Permettre au site hôte de personnaliser le style du widget.
+#### Implémentation tentée ####
+J'ai commencé par modifier ma config rollup :
+```mjs
+postcss({
+  inject: true,
+  ...
+})
+```
+Puis j'ai ajouté 2 props au WidgetContainer :
+- `customClass` pour appliquer une classe CSS personnalisée
+- `primaryColor` pour injecter une variable CSS pour modifier la couleur principale du widget \
+Dans widget-container.tsx
+```js
+interface WidgetContainerProps {
+  clientKey: string;
+  customClass?: string;
+  primaryColor?: string;
+}
+export function WidgetContainer({ clientKey, customClass, primaryColor }: WidgetContainerProps) {
+...
+return (
+    <WidgetContext.Provider value={{ isOpen, setIsOpen, clientKey }}>
+      <Widget customClass={customClass} primaryColor={primaryColor} />
+    </WidgetContext.Provider>
+  );
+}
+```
+
 
 ## 3 - Communication avec le site hôte ##
 ### Objectif ###
@@ -106,7 +133,7 @@ Le site hôte ne reçoit pas les events émis par le widget.
 **Test effectué** \
 Ajout des options `bubbles: true` et `composed: true` pour permettre à l'event de remonter le DOM et de traverser le shadow DOM
 `./src/widget/components/Form.tsx`
-```
+```tsx
     bubbles: true,
     composed: true
 ```
@@ -123,7 +150,7 @@ Le widget n'arrive pas à traverser le DOM shadow. Le host ne reçoit pas l'even
 Simuler un backend pour récupérer des créneaux disponibles et réserver des ateliers en gérant les cas de réussite et d'échec des réservations.
 ### Structure des données ###
 Les données sont définies dans un fichier JSON qui représente les créneaux d'atelier. Chaque créneau contient :
-```
+```json
 "slots_available": [
     {
       "id": 0,
