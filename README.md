@@ -79,6 +79,11 @@ En revanche, l'Iframe offre une meilleure isolation CSS et JavaScript mais limit
 Comme mon objectif était de permettre au site hôte de personnaliser visuellement le widget pour une intégration harmonieuse, j'ai préféré utilisé un script. \
 [Using Iframes vs Scripts for Embedding Components](https://blog.bitsrc.io/using-iframes-vs-scripts-for-embedding-components-e30eb569cb46)
 
+## 2 - Gestion de la personnalisation ##
+### Objectif ###
+Permettre au site hôte de personnaliser le widget.
+Je n'ai pas réussi : j'ai choisi le script explicitement pour ça et je n'ai pas réussi.
+
 ## 3 - Communication avec le site hôte ##
 ### Objectif ###
 Gérer la communication entre le widget et le site hôte grâce à des **CustomEvent**.
@@ -111,3 +116,48 @@ Ajout des options `bubbles: true` et `composed: true` pour permettre à l'event 
 Le widget n'arrive pas à traverser le DOM shadow. Le host ne reçoit pas l'event. Il est possible que ça vienne du fait que les events sont dispatchés sur `window` au lieu de l'élément hôte. Le widget s'exécute sur un DOM parent isolé ce qui empêche la propagation.
 
 [CustomEvent vs callback](https://gomakethings.com/callbacks-vs.-custom-events-in-vanilla-js/)
+
+
+## 4 - API / données ##
+### Objectif ###
+Simuler un backend pour récupérer des créneaux disponibles et réserver des ateliers en gérant les cas de réussite et d'échec des réservations.
+### Structure des données ###
+Les données sont définies dans un fichier JSON qui représente les créneaux d'atelier. Chaque créneau contient :
+```
+"slots_available": [
+    {
+      "id": 0,
+      "date": "2025-10-07T18:00:00Z",
+      "capacity": 6,
+      "remaining": 6
+    }
+```
+- `id` : identifiant unique du créneau
+- `date` : date et heure de l'atelier
+- `capacity` : capacité maximale
+- `remaining` : nombre de places restantes
+
+Cette structure est simple et permet de connaitre rapidement la disponibilité d'un créneau et d'ajuster le calendrier visuellement en fonction des places restantes.
+
+### Simulation du backend ###
+Le fichier mockServer.ts simule les calls API grâce à 3 fonctions principales :
+- `getSlots()`
+- `bookSlot()`
+- `failBooking()`
+
+La fonction `getSlots()` vérifie qu'il n'y a pas d'erreur dans le JSON (remaining < capacity). \
+Retourne la liste des slots disponibles à partir du JSON. \
+Filtre les dates et possède une variable `exceeding` qui empêche la réservation d'un slot 30min avant le début de l'atelier.
+
+La fonction `bookSlot()` vérifie si le slot passé en paramètre est disponible. \
+Si remaining <= 0 la réservation échoue. \
+Sinon, elle décrémente le remaining et renvoie la mise à jour du slot. 
+
+La fonction `failBooking()` sert à simuler un échec de paiement en mettant un setTimeout plus long. Dans `Form.tsx` lorsque cette fonction est appelée un loader est lancé indiquant à l'utilisateur que la transaction est en cours.
+
+### Points d'amélioration ###
+- Simuler l'échec de paiement de manière aléatoire (avec un `Math.random()`) au lieu de faire une comparaison avec l'avant dernier slot disponible. Ça reflètrai mieux les conditions réelles.
+- Gérer les races conditions : si le remaining passe à 0 entre le retour de `BookSlot()` et le submit, afficher un message d'erreur au moment de la réservation.
+- Permettre à l'utilisateur de réserver un créneau pour plusieurs personnes
+- Permettre plusieurs créneaux dans la journée
+
