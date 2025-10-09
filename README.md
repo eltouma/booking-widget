@@ -248,3 +248,13 @@ Pour que l'expérience utilisateur soit la plus intuitive possible le calendrier
 Lorsqu'une réservation est faite un toast s'affiche avec un message clair et concis pour indiquer à l'utilisateur si sa réservation a réussie ou échouée.
 ### Échec de paiement ###
 L'échec de paiement est un cas à part puisque c'est le seul qui possède un loader en plus simulant une attente hors norme menant à l'échec.
+
+## Pourquoi shadow root ? ##
+J'ai choisi d'utiliser shadow root pour isoler le widget du reste du site hôte pour plusieurs raisons :
+- **isolation du CSS** : le style du site hôte ne risque pas de casser l'apparence du widget et inversement. Pas de conflit.
+- **isolation du JS** : on évite également les conflits avec des bibliothèques déjà utilisées par le site hôte.
+- **portabilité** : le widget ne dépend pas d'une structure ou d'un style déjà existant
+
+### Limites ###
+- Les styles externes n'influencent pas le widget : on perd l'harmonie recherchée entre le style du widget et celui du site hôte
+- La communication avec le site hôte via les CustomEvent reste plus compliquée
