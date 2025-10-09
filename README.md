@@ -1,7 +1,7 @@
-## Installation ##
-### Wireframe ###
+## Wireframe ##
 [Inspiration et wireframe](https://www.figma.com/design/qorm8UiXR1tVa1PR4iVGFH/Untitled?node-id=0-1&p=f&t=iimf6EqkAYKBkaag-0)
 
+## Installation ##
 ### Build le projet ###
 ```sh
 npm install react react-dom react-router-dom
