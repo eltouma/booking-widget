@@ -1,5 +1,6 @@
-## Wireframe ##
+## Wireframe et template ##
 [Inspiration et wireframe](https://www.figma.com/design/qorm8UiXR1tVa1PR4iVGFH/Untitled?node-id=0-1&p=f&t=iimf6EqkAYKBkaag-0)
+[Template utilisé pour le site hôte](https://github.com/YaninaTrekhleb/restaurant-website)
 
 ## Installation ##
 ### Build le projet ###
