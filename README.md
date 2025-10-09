@@ -93,7 +93,7 @@ postcss({
 Puis j'ai ajouté 2 props au WidgetContainer :
 - `customClass` pour appliquer une classe CSS personnalisée
 - `primaryColor` pour injecter une variable CSS pour modifier la couleur principale du widget \
-Dans widget-container.tsx
+widget-container.tsx
 ```js
 interface WidgetContainerProps {
   clientKey: string;
@@ -109,6 +109,52 @@ return (
   );
 }
 ```
+
+widget.tsx
+```js
+interface WidgetProps {
+  customClass?: string;
+  primaryColor?: string;
+}
+
+export function Widget({ customClass, primaryColor }: WidgetProps) {
+  const { isOpen, setIsOpen } = useContext(WidgetContext);
+  const widgetStyle = { '--primary-color': primaryColor } as React.CSSProperties;
+if (!isOpen) {
+  return (
+    <div className={widget-container ${customClass ?? ''}} style={widgetStyle}>
+      <button
+        className="widget-button"
+        onClick={() => setIsOpen(true)}
+      >
+        Réserver un atelier
+      </button>
+    </div>
+  );
+}
+
+return (
+    <div
+      className={`widget-container ${customClass ?? ''}`}
+      style={widgetStyle}
+    >
+    ...
+    </div>
+)
+```
+Dans `styles.css`, j'ai remplacé la couleur par ma variable
+```css
+.widget-button {
+  background-color: var(--primary-color);
+  ...
+}
+```
+
+**Problème** \
+Mon widget a un background invisible qu'il est impossible de modifier.
+
+**Hypothèse** \
+Comme le widget utilise le shadow root, le DOM du site n'a pas accès à celui du widget : les styles définis à l'extérieur du widget (dans le DOM parent) ne peuvent pas s'appliquer à l'intérieur à cause de l'isolation.
 
 
 ## 3 - Communication avec le site hôte ##
